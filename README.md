@@ -14,7 +14,7 @@ Follow the steps mentioned below to install and run the project.
 3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`.
 4. Update the database name and credentials in `.env` file.
 5. Run the command `php artisan migrate:fresh --seed`.
-6. Add your Mailtrap credentials in ```.env``` to send notifications via email.
+6. Update Mailtrap credentials in ```.env``` to send notifications via email.
 
 ## Q2
 # Understanding the Event-Driven Workflow
