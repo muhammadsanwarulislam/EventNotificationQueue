@@ -1,12 +1,12 @@
 # Instructions of the project #
 |           #                |   **Instructions**                          |
 |----------------------------|---------------------------------------------|
-| Step                       |  [Setup Laravel project](#q1)<br>           |
-| Explanation of the process |  [Process ](#q2)<br>                         |
+| Setup Laravel Project      |  [Follow Setup Instructions](#q1)<br>           |
+| Explanation of Process |  [Understand the Event-Driven Workflow](#q2)<br>                         |
 
 
 ## Q1
-# Installations process
+# Setup Laravel Project
 Follow the steps mentioned below to install and run the project.
 
 1. Clone or download the repository
@@ -16,13 +16,21 @@ Follow the steps mentioned below to install and run the project.
 5. Run the command `php artisan migrate:fresh --seed`
 
 ## Q2
-# Explanation of the process
+# Understanding the Event-Driven Workflow
+This project demonstrates how to use Laravel's Events, Listeners, and Notifications effectively. Here's the step-by-step guide:
 
 ### Steps to Create Events and Listeners:
 
-1. Generate an Event:
+1. **Create an Event**
+   Generate an event to encapsulate the data and logic:
 ```php artisan make:event UserCreated```
-2. Generate a Listner:
+2. **Create a Listner**
+   Generate a listener that responds to the event:
 ```php artisan make:listener SendUserWelcomeNotification --event=UserCreated```
-3. Generate a Notification class
+3. **Create a Notification**
+   Generate a notification class to handle user communication:
 ```php artisan make:notification UserWelcomeNotification```
+4. Workflow
+   - When a user is created, the ```UserCreated``` event is triggered (dispatched by the model).
+   - The ```SendUserWelcomeNotification``` listener processes the event asynchronously (using queues).
+   - The listener sends a ```UserWelcomeNotification``` via email and stores it in the database.
