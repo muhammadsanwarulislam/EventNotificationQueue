@@ -45,11 +45,11 @@ This project demonstrates how to use Laravel's Events, Listeners, and Notificati
 10. **Key Points**
    1. **No Need to Register in** ```EventServiceProvider```:
 
-      . Starting with Laravel 11, events and listeners are automatically discovered. There’s no need to manually register them in the ```EventServiceProvider```.
+      - Starting with Laravel 11, events and listeners are automatically discovered. There’s no need to manually register them in the ```EventServiceProvider```.
       
    2. **Automatic Listener Directory Scanning:**
 
-      . Laravel 11 defaults to scanning the ```app/Listeners``` directory.
-      . **If your listeners are in a custom directory, you can specify it in bootstrap/app.php like this:**
+      - Laravel 11 defaults to scanning the ```app/Listeners``` directory.
+      - **If your listeners are in a custom directory, you can specify it in bootstrap/app.php like this:**
       ```app()->withEvents(discover: [__DIR__.'/../app/CustomListeners',]);```
 
