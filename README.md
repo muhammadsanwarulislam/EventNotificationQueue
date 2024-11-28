@@ -21,11 +21,8 @@ Follow the steps mentioned below to install and run the project.
 ### Steps to Create Events and Listeners:
 
 1. Generate an Event:
-```php artisan make:event UserCreated
-```
+```php artisan make:event UserCreated```
 2. Generate a Listner:
-```php artisan make:listener SendUserWelcomeNotification --event=UserCreated
-```
+```php artisan make:listener SendUserWelcomeNotification --event=UserCreated```
 3. Generate a Notification class
-```php artisan make:notification UserWelcomeNotification
-```
+```php artisan make:notification UserWelcomeNotification```
