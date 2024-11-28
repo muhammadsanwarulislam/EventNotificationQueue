@@ -22,15 +22,18 @@ This project demonstrates how to use Laravel's Events, Listeners, and Notificati
 ### Steps to Create Events and Listeners:
 
 1. **Create an Event**
+   
    Generate an event to encapsulate the data and logic:
 ```php artisan make:event UserCreated```
-2. **Create a Listner**
+3. **Create a Listner**
+
    Generate a listener that responds to the event:
 ```php artisan make:listener SendUserWelcomeNotification --event=UserCreated```
-3. **Create a Notification**
+5. **Create a Notification**
+
    Generate a notification class to handle user communication:
 ```php artisan make:notification UserWelcomeNotification```
-4. Workflow
+7. **Workflow**
    - When a user is created, the ```UserCreated``` event is triggered (dispatched by the model).
    - The ```SendUserWelcomeNotification``` listener processes the event asynchronously (using queues).
    - The listener sends a ```UserWelcomeNotification``` via email and stores it in the database.
