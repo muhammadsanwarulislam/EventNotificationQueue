@@ -37,13 +37,17 @@ This project demonstrates how to use Laravel's Events, Listeners, and Notificati
    - When a user is created, the ```UserCreated``` event is triggered (dispatched by the model).
    - The ```SendUserWelcomeNotification``` listener processes the event asynchronously (using queues).
    - The listener sends a ```UserWelcomeNotification``` via email and stores it in the database.
+
+8. **Queue Processing**
+    Run queue workers to handle asynchronous listeners:
+   ```php artisan queue:work```
   
-8. **Key Points**
+10. **Key Points**
    1. **No Need to Register in** ```EventServiceProvider```:
 
       . Starting with Laravel 11, events and listeners are automatically discovered. There’s no need to manually register them in the ```EventServiceProvider```.
       
-   3. **Automatic Listener Directory Scanning:**
+   2. **Automatic Listener Directory Scanning:**
 
       . Laravel 11 defaults to scanning the ```app/Listeners``` directory.
       . **If your listeners are in a custom directory, you can specify it in bootstrap/app.php like this:**
