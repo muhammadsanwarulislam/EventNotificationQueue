@@ -18,7 +18,7 @@ Follow the steps mentioned below to install and run the project.
 
 ## Q2
 # Understanding the Event-Driven Workflow
-This project demonstrates how to use Laravel's Events, Listeners, and Notifications effectively. Here's the step-by-step guide:
+This project demonstrates how to leverage Laravel's Events, Listeners, and Notifications effectively to handle asynchronous tasks such as sending notifications after a user is created. Below is a step-by-step guide to set up events, listeners, and notifications.
 
 ### Steps to Create Events and Listeners:
 
@@ -34,6 +34,13 @@ This project demonstrates how to use Laravel's Events, Listeners, and Notificati
 
    Generate a notification class to handle user communication:
 ```php artisan make:notification UserWelcomeNotification```
+
+6. **Create Notification Table**
+
+   Laravel provides a default notifications table to store notifications sent to users. To create this table, run the following:
+
+```php artisan make:notifications-table```
+
 7. **Workflow**
    - When a user is created, the ```UserCreated``` event is triggered (dispatched by the model).
    - The ```SendUserWelcomeNotification``` listener processes the event asynchronously (using queues).
