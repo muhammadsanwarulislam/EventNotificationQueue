@@ -23,23 +23,34 @@ This project demonstrates how to leverage Laravel's Events, Listeners, and Notif
 ### Steps to Create Events and Listeners:
 
 1. **Create an Event**
-   
-   Generate an event to encapsulate the data and logic:
-```php artisan make:event UserCreated```
+   - Generate an event to encapsulate the data and logic:
+   - ```php artisan make:event UserCreated```
 3. **Create a Listner**
+    - Generate a listener that responds to the event:
+    - ```php artisan make:listener SendUserWelcomeNotification --event=UserCreated```
 
-   Generate a listener that responds to the event:
-```php artisan make:listener SendUserWelcomeNotification --event=UserCreated```
+      ```
+      public function handle(UserCreated $event): void
+      {
+          // $event->user->notify(new UserWelcomeNotification());
+          Notification::send(notifiables: $event->user, notification: new UserWelcomeNotification());
+      }
+      ```
 5. **Create a Notification**
+    - Generate a notification class to handle user communication:
+    - ```php artisan make:notification UserWelcomeNotification```
+    - Use the ```toMail()``` method to send an email notification. Optionally, you can also save the notification in the database using ```via()```:
+       ```
+       public function via(object $notifiable): array
+       {
+           return ['mail', 'database'];
+       }
+       ```
 
-   Generate a notification class to handle user communication:
-```php artisan make:notification UserWelcomeNotification```
-
-6. **Create Notification Table**
-
-   Laravel provides a default notifications table to store notifications sent to users. To create this table, run the following:
-
-```php artisan make:notifications-table```
+6. **Create Notification and Job Table**
+    - Laravel provides a default ***notifications*** and ***jobs*** tables to store notifications sent to users and events. To create this table, run the following:
+    - ```php artisan make:notifications-table```
+    -  ```php artisan make:queue-table```
 
 7. **Workflow**
    - When a user is created, the ```UserCreated``` event is triggered (dispatched by the model).
@@ -47,10 +58,11 @@ This project demonstrates how to leverage Laravel's Events, Listeners, and Notif
    - The listener sends a ```UserWelcomeNotification``` via email and stores it in the database.
 
 8. **Queue Processing**
-    Run queue workers to handle asynchronous listeners:
-   ```php artisan queue:work```
+    - Run queue workers to handle asynchronous listeners:
+    - ```php artisan queue:work```
   
 10. **Key Points**
+   
    1. **No Need to Register in** ```EventServiceProvider```:
 
       - Starting with Laravel 11, events and listeners are automatically discovered. There’s no need to manually register them in the ```EventServiceProvider```.
