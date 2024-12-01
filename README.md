@@ -36,6 +36,14 @@ This project demonstrates how to leverage Laravel's Events, Listeners, and Notif
           Notification::send(notifiables: $event->user, notification: new UserWelcomeNotification());
       }
       ```
+    - Implement the logic in the ```handle()``` method of the listener.
+    - We send notifications in two common ways:
+       1. Using the ```notify()``` Method:
+          - This method is called directly on the Notifiable model (e.g., User in this case).
+          - It is straightforward and tied to the specific notifiable instance.
+       2. Using the ```Notification``` Facade:
+          - This approach is useful when you need to send a notification to multiple notifiable entities at once (e.g., an array of users or models).
+          - It provides flexibility for batch notifications.
 5. **Create a Notification**
     - Generate a notification class to handle user communication:
     - ```php artisan make:notification UserWelcomeNotification```
